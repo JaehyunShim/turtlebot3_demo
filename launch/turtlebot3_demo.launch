@@ -1,0 +1,6 @@
+<launch>
+  <arg name="robot_name"         default="turtlebot3"/>
+
+  <node name="turtlebot3_demo" pkg="turtlebot3_demo" type="turtlebot3_demo" output="screen"/>
+
+</launch>
