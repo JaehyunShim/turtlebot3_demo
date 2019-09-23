@@ -53,22 +53,10 @@ void Turtlebot3Demo::result_callback(const move_base_msgs::MoveBaseActionResult:
     // Pose
     if (step_ == 1)
     {
-      msg.pose.position.x = 0.5;  
-      msg.pose.position.y = 0.5;
+      msg.pose.position.x = 0.0;  
+      msg.pose.position.y = -0.8;
       msg.pose.position.z = 0.0;
-      q.setRPY(0, 0, 0);  // roll, pitch, yaw
-      msg.pose.orientation.x = q[0];
-      msg.pose.orientation.y = q[1];
-      msg.pose.orientation.z = q[2];
-      msg.pose.orientation.w = q[3];
-      step_++;
-    }
-    else if (step_ == 2)
-    {
-      msg.pose.position.x = -0.5;  
-      msg.pose.position.y = 0.5;
-      msg.pose.position.z = 0.0;
-      q.setRPY(0, 0, 0);  // roll, pitch, yaw
+      q.setRPY(0, 0, 1.57);  // roll, pitch, yaw
       msg.pose.orientation.x = q[0];
       msg.pose.orientation.y = q[1];
       msg.pose.orientation.z = q[2];
@@ -77,10 +65,10 @@ void Turtlebot3Demo::result_callback(const move_base_msgs::MoveBaseActionResult:
     }
     else
     {
-      msg.pose.position.x = -0.5;  
-      msg.pose.position.y = -0.5;
+      msg.pose.position.x = 0.0;  
+      msg.pose.position.y = 0.0;  
       msg.pose.position.z = 0.0;
-      q.setRPY(0, 0, 0);  // roll, pitch, yaw
+      q.setRPY(0, 0, 3.14);  // roll, pitch, yaw
       msg.pose.orientation.x = q[0];
       msg.pose.orientation.y = q[1];
       msg.pose.orientation.z = q[2];
@@ -88,6 +76,7 @@ void Turtlebot3Demo::result_callback(const move_base_msgs::MoveBaseActionResult:
       step_ = 1;
     }
 
+    ros::Duration(2.0).sleep(); 
     goal_pose_pub_.publish(msg);
   }
 }
