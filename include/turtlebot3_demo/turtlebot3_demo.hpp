@@ -20,25 +20,27 @@
 #define TURTLEBOT3_DEMO_HPP
 
 #include <geometry_msgs/PoseStamped.h>
-#include <move_base_msgs/MoveBaseActionGoal.h>
+#include <move_base_msgs/MoveBaseActionResult.h>
 #include <ros/ros.h>
 
 
 class Turtlebot3Demo
 {
+ public:
+  Turtlebot3Demo();
+  ~Turtlebot3Demo();
+  bool init();
+
  private:
+  // ROS nodehandle
+  ros::NodeHandle nh_;
+  
   // ROS publisher and subscribers
   ros::Publisher goal_pose_pub_;
   ros::Subscriber result_sub_;
 
-  bool moving_state_;
-
- public:
-
-  Turtlebot3Demo();
-  ~Turtlebot3Demo();
-
-  void publishCallback(const ros::TimerEvent&);
-  void openManipulatorOptionCallback(const std_msgs::String::ConstPtr &msg);
+  // Init and callback functions
+  void result_callback(const move_base_msgs::MoveBaseActionResult::ConstPtr msg);
+  void goal_pose_callback(const ros::TimerEvent&);
 };
 #endif //TURTLEBOT3_DEMO_HPP
