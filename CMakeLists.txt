@@ -8,13 +8,10 @@ project(turtlebot3_demo)
 # Find catkin packages and libraries for catkin and system dependencies
 ################################################################################
 find_package(catkin REQUIRED COMPONENTS
-  roscpp
-  std_msgs
-  sensor_msgs
   geometry_msgs
   move_base_msgs
-  nav_msgs
-  turtlebot3_msgs
+  roscpp
+  tf2
 )
 
 ################################################################################
@@ -27,13 +24,10 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
   INCLUDE_DIRS include
   CATKIN_DEPENDS
-    roscpp
-    std_msgs
-    sensor_msgs
     geometry_msgs
     move_base_msgs
-    nav_msgs
-    turtlebot3_msgs
+    roscpp
+    tf2
 )
 
 ################################################################################

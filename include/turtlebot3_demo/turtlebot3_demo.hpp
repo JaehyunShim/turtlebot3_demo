@@ -22,7 +22,7 @@
 #include <geometry_msgs/PoseStamped.h>
 #include <move_base_msgs/MoveBaseActionResult.h>
 #include <ros/ros.h>
-
+#include <tf2/LinearMath/Quaternion.h>
 
 class Turtlebot3Demo
 {
@@ -34,7 +34,8 @@ class Turtlebot3Demo
  private:
   // ROS nodehandle
   ros::NodeHandle nh_;
-  
+  uint8_t step_;
+
   // ROS publisher and subscribers
   ros::Publisher goal_pose_pub_;
   ros::Subscriber result_sub_;

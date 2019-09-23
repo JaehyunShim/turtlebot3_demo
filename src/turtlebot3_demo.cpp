@@ -23,6 +23,8 @@ Turtlebot3Demo::Turtlebot3Demo()
 {
   bool init_result = init();
   ROS_ASSERT(init_result);
+
+  step_ = 1;
 }
 
 Turtlebot3Demo::~Turtlebot3Demo()
@@ -31,32 +33,63 @@ Turtlebot3Demo::~Turtlebot3Demo()
 
 bool Turtlebot3Demo::init()
 {
-  // ROS publishers and subscribers
   goal_pose_pub_ = nh_.advertise<geometry_msgs::PoseStamped>("/move_base_simple/goal", 10);
   result_sub_ = nh_.subscribe("/move_base/result", 10, &Turtlebot3Demo::result_callback, this);
 
   return true;
 }
 
-void Turtlebot3Demo::result_callback(const move_base_msgs::MoveBaseActionResult::ConstPtr msg)
+void Turtlebot3Demo::result_callback(const move_base_msgs::MoveBaseActionResult::ConstPtr result)
 {
-  if(msg->status.text == "Goal reached.")
+  if(!strcmp(result->status.text.c_str(), "Goal reached."))
   {
     geometry_msgs::PoseStamped msg;
-    msg.pose.position.x = 0.5;
-    msg.pose.position.y = 0.5;
-    msg.pose.position.z = 0.0;
-    msg.pose.orientation.w = 1.0;
-    msg.pose.orientation.x = 0.0;
-    msg.pose.orientation.y = 0.0;
-    msg.pose.orientation.z = 0.0;
+    tf2::Quaternion q;
+
+    // Header
+    msg.header.frame_id = "map";
+    msg.header.stamp = ros::Time::now();
+
+    // Pose
+    if (step_ == 1)
+    {
+      msg.pose.position.x = 0.5;  
+      msg.pose.position.y = 0.5;
+      msg.pose.position.z = 0.0;
+      q.setRPY(0, 0, 0);  // roll, pitch, yaw
+      msg.pose.orientation.x = q[0];
+      msg.pose.orientation.y = q[1];
+      msg.pose.orientation.z = q[2];
+      msg.pose.orientation.w = q[3];
+      step_++;
+    }
+    else if (step_ == 2)
+    {
+      msg.pose.position.x = -0.5;  
+      msg.pose.position.y = 0.5;
+      msg.pose.position.z = 0.0;
+      q.setRPY(0, 0, 0);  // roll, pitch, yaw
+      msg.pose.orientation.x = q[0];
+      msg.pose.orientation.y = q[1];
+      msg.pose.orientation.z = q[2];
+      msg.pose.orientation.w = q[3];
+      step_++;
+    }
+    else
+    {
+      msg.pose.position.x = -0.5;  
+      msg.pose.position.y = -0.5;
+      msg.pose.position.z = 0.0;
+      q.setRPY(0, 0, 0);  // roll, pitch, yaw
+      msg.pose.orientation.x = q[0];
+      msg.pose.orientation.y = q[1];
+      msg.pose.orientation.z = q[2];
+      msg.pose.orientation.w = q[3];
+      step_ = 1;
+    }
 
     goal_pose_pub_.publish(msg);
   }
-}
-
-void Turtlebot3Demo::goal_pose_callback(const ros::TimerEvent&)
-{
 }
 
 int main(int argc, char* argv[])
