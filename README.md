@@ -41,7 +41,6 @@ $ roslaunch turtlebot3_demo turtlebot3_demo.launch
 ```
 
 ### Reference
-- [robotis_engineer_msgs](https://github.com/rjshim/robotis_engineer_msgs)
-- [robotis_op3](https://github.com/ROBOTIS-GIT/ROBOTIS-OP3)
-- [robotis_op3_msgs](https://github.com/ROBOTIS-GIT/ROBOTIS-OP3-msgs)
-- [robotis_op3_tools](https://github.com/ROBOTIS-GIT/ROBOTIS-OP3-Tools)
+- [turtlebot3](https://github.com/ROBOTIS-GIT/turtlebot3)
+- [turtlebot3_msgs](https://github.com/ROBOTIS-GIT/turtlebot3_msgs)
+- [turtlebot3 eManual](http://emanual.robotis.com/docs/en/platform/turtlebot3/overview/)
