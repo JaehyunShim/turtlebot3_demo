@@ -37,6 +37,7 @@ $ roscore
 $ roslaunch turtlebot3_bringup turtlebot3_robot.launch
 
 (Remote PC)
+$ export TURTLEBOT3_MODEL=${TB3_MODEL}
 $ roslaunch turtlebot3_demo turtlebot3_demo.launch 
 ```
 

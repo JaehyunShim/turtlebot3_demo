@@ -34,6 +34,7 @@ class Turtlebot3Demo
  private:
   // ROS nodehandle
   ros::NodeHandle nh_;
+  
   uint8_t step_;
 
   // ROS publisher and subscribers
@@ -42,6 +43,5 @@ class Turtlebot3Demo
 
   // Init and callback functions
   void result_callback(const move_base_msgs::MoveBaseActionResult::ConstPtr msg);
-  void goal_pose_callback(const ros::TimerEvent&);
 };
 #endif //TURTLEBOT3_DEMO_HPP
