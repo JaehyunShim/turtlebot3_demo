@@ -35,7 +35,7 @@ class Turtlebot3Demo
   // ROS nodehandle
   ros::NodeHandle nh_;
   
-  uint8_t step_;
+  uint8_t state_;
 
   // ROS publisher and subscribers
   ros::Publisher goal_pose_pub_;

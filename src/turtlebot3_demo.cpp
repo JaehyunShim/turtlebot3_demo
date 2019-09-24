@@ -24,7 +24,7 @@ Turtlebot3Demo::Turtlebot3Demo()
   bool init_result = init();
   ROS_ASSERT(init_result);
 
-  step_ = 1;
+  state_ = 1;
 }
 
 Turtlebot3Demo::~Turtlebot3Demo()
@@ -51,7 +51,7 @@ void Turtlebot3Demo::result_callback(const move_base_msgs::MoveBaseActionResult:
     msg.header.stamp = ros::Time::now();
 
     // Pose
-    if (step_ == 1)
+    if (state_ == 1)
     {
       msg.pose.position.x = 0.0;  
       msg.pose.position.y = -0.8;
@@ -61,9 +61,21 @@ void Turtlebot3Demo::result_callback(const move_base_msgs::MoveBaseActionResult:
       msg.pose.orientation.y = q[1];
       msg.pose.orientation.z = q[2];
       msg.pose.orientation.w = q[3];
-      step_++;
+      state_++;
     }
-    else
+    else if (state_ == 2)
+    {
+      msg.pose.position.x = 0.0;  
+      msg.pose.position.y = -0.8;
+      msg.pose.position.z = 0.0;
+      q.setRPY(0, 0, -1.57);  // roll, pitch, yaw
+      msg.pose.orientation.x = q[0];
+      msg.pose.orientation.y = q[1];
+      msg.pose.orientation.z = q[2];
+      msg.pose.orientation.w = q[3];
+      state_++;
+    }
+    else if (state_ == 3)
     {
       msg.pose.position.x = 0.0;  
       msg.pose.position.y = 0.0;  
@@ -73,7 +85,19 @@ void Turtlebot3Demo::result_callback(const move_base_msgs::MoveBaseActionResult:
       msg.pose.orientation.y = q[1];
       msg.pose.orientation.z = q[2];
       msg.pose.orientation.w = q[3];
-      step_ = 1;
+      state_++;
+    }
+    else
+    {
+      msg.pose.position.x = 0.0;  
+      msg.pose.position.y = 0.0;  
+      msg.pose.position.z = 0.0;
+      q.setRPY(0, 0, 0);  // roll, pitch, yaw
+      msg.pose.orientation.x = q[0];
+      msg.pose.orientation.y = q[1];
+      msg.pose.orientation.z = q[2];
+      msg.pose.orientation.w = q[3];
+      state_ = 1;
     }
 
     ros::Duration(2.0).sleep(); 
