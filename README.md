@@ -24,6 +24,11 @@ http://emanual.robotis.com/docs/en/platform/turtlebot3/setup/#setup
 
 (Build)
 $ cd ~/catkin_ws && catkin_make
+
+(Copy parameter files to TB3 navigation pkg)
+$ rospack profile
+$ cp `rospack find turtlebot3_demo`/nav_param/costmap_common_params_waffle_pi.yaml `rospack find turtlebot3_navigation`/param/
+$ cp `rospack find turtlebot3_demo`/nav_param/dwa_local_planner_params_waffle_pi.yaml `rospack find turtlebot3_navigation`/param/
 ```
 
 ### Execute ROS packages
