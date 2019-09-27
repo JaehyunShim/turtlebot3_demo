@@ -27,7 +27,7 @@
     <node pkg="rviz" type="rviz" name="rviz" required="true"
           args="-d $(find turtlebot3_demo)/rviz/turtlebot3_demo.rviz"/>
   </group>
-  
+
   <!-- TurtleBot3 Demo -->
   <node name="turtlebot3_demo" pkg="turtlebot3_demo" type="turtlebot3_demo" output="screen"/>
 

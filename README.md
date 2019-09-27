@@ -29,6 +29,8 @@ $ cd ~/catkin_ws && catkin_make
 $ rospack profile
 $ cp `rospack find turtlebot3_demo`/nav_param/costmap_common_params_waffle_pi.yaml `rospack find turtlebot3_navigation`/param/
 $ cp `rospack find turtlebot3_demo`/nav_param/dwa_local_planner_params_waffle_pi.yaml `rospack find turtlebot3_navigation`/param/
+$ cp `rospack find turtlebot3_demo`/nav_param/global_costmap_params.yaml `rospack find turtlebot3_navigation`/param/
+$ cp `rospack find turtlebot3_demo`/nav_param/local_costmap_params.yaml `rospack find turtlebot3_navigation`/param/
 ```
 
 ### Execute ROS packages
@@ -45,6 +47,22 @@ $ roslaunch turtlebot3_bringup turtlebot3_robot.launch
 $ export TURTLEBOT3_MODEL=${TB3_MODEL}
 $ roslaunch turtlebot3_demo turtlebot3_demo.launch 
 ```
+
+### Param Settings
+sim_time: 1.0
+global: 
+    width: 3.0
+    height: 3.0
+    resolution: 0.01
+    inflation_radius: 0.4
+    cost_scaling_factor: 5.0
+local: 
+    width: 1.0
+    height: 1.0
+    resolution: 0.005
+    inflation_radius: 0.4
+    cost_scaling_factor: 5.0
+    footprint: x 0.7
 
 ### Reference
 - [turtlebot3](https://github.com/ROBOTIS-GIT/turtlebot3)
